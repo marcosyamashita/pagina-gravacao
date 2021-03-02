@@ -52,78 +52,47 @@
             bottom: 0;
         }
 
-        .container{
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility: .6s, opacity: .5s;;
-        }
-
-        .container:target{
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .btn{
-            width: 100px;
-            display: block;
-            background: rgb(131, 128, 128);
-            padding: 5px;
-            text-align: center;
-            border-radius: 5px;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .container{
+        .modal {
             position: fixed;
-            right: 0;
-            left: 0;
             top: 0;
+            right: 0;
             bottom: 0;
-            width: 300%;
-            background: rgba(0, 0, 0, .6);
-        }
-        .modal-corpo{
-            border-radius: 10px;
-            margin: 100px auto;
-            width: 1020px;
-            height: 500px;
-            color: #fff;
-            padding: 4px;
-            position: relative;
             left: 0;
-            top: 0;
-            overflow: hidden;
-            text-align: center;
-        }
-        .modal-corpo p{
-            
-            padding: 10px;
-            font-size: 20px;
-        }
-        .fechar{
-            font-size: 25px;
-            position: fixed;
-            right: 0;
-            background: rgb(100, 94, 94);
-            padding: 4.5px;
-            text-decoration: none;
-            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgba(0,0,0,0.8);
+            z-index: 99999;
+            opacity:0;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            pointer-events: none;
         }
 
-        #frame { 
-            width: 1020px; 
-            position:absolute; 
-            left:0; 
-            top:0px; 
-            right: 0; 
-            -ms-zoom: 0.7; 
-            -moz-transform: scale(0.7); 
-            -moz-transform-origin: 0px 0; 
-            -o-transform: scale(0.7); 
-            -o-transform-origin: 0 0; 
-            -webkit-transform: scale(0.7); 
-            -webkit-transform-origin: 0 0;
+        .modal:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal > div {
+            width: 400px;
+            position: relative;
+            margin: 10% auto;
+            padding: 15px 20px;
+            background: #fff;
+        }
+
+        .fechar {
+            position: absolute;
+            width: 30px;
+            right: -15px;
+            top: -20px;
+            text-align: center;
+            line-height: 30px;
+            margin-top: 5px;
+            background: #ff4545;
+            border-radius: 50%;
+            font-size: 16px;
+            color: #8d0000;
         }
 
 
@@ -154,16 +123,12 @@
                     <th>01/01/0000 - Inicio: 15:00</th>
                     <th>Reunião Atualização Sistema de OS</th>
                     <th>
-                        <a href="#abrir" class="btn">Link da Sala</a>
-                          <div class="container" id="abrir">
-
-                            <div class="modal-corpo">
-                                <a href="#" class="fechar">X</a>
-                                <p><iframe id="frame" src="https://conf.crediembrapa.com.br/playback/presentation/2.0/playback.html?meetingId=183f0bf3a0982a127bdb8161e0c44eb696b3e75c-1584985740664" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></p>
+                        <div class="highlights">
+                            <div class="highlights-item">
+                              <label class="highlights-button" for="modal_chaves">Ver fotos do Chaves</label>
                             </div>
-                          </div>  
-                        
-                    </th>
+                        <!--<iframe src="https://player.vimeo.com/video/504904583" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    --></th>
                 </tr>
                 <tr>
                     <th scope="row">AGO - 2020</th>
