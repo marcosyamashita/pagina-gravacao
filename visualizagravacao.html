@@ -16,7 +16,7 @@
         }
 
         html, body {
-            height: 100%;
+
             background: #d9e0e0;
         }
 
@@ -41,24 +41,14 @@
             font-family: 'Asap', sans-serif;
         }
 
-        .footer {
-            width: 100%;
-            padding: 1%;
-            background: #003641;
-            color: white;
-            text-align: center;
-            font-family: 'Asap', sans-serif;
-            position: absolute;
-            bottom: 0;
-        }
-
         .container{
             visibility: hidden;
             opacity: 0;
-            transition: visibility: .6s, opacity: .5s;;
+            transition: visibility: .6s, opacity: .5s;
         }
 
         .container:target{
+            position: fixed;
             visibility: visible;
             opacity: 1;
         }
@@ -75,29 +65,24 @@
         }
 
         .container{
-            position: fixed;
-            right: 0;
+            position: absolute;
             left: 0;
             top: 0;
+            right: 0;
             bottom: 0;
-            width: 300%;
-            background: rgba(0, 0, 0, .6);
         }
         .modal-corpo{
-            border-radius: 10px;
-            margin: 100px auto;
-            width: 1020px;
-            height: 500px;
+            width: 1520px;
+            height: 1900px;
             color: #fff;
-            padding: 4px;
-            position: relative;
+            position: absolute;
             left: 0;
+            right: 0;
             top: 0;
+            bottom: 0;
             overflow: hidden;
-            text-align: center;
         }
         .modal-corpo p{
-            
             padding: 10px;
             font-size: 20px;
         }
@@ -105,25 +90,37 @@
             font-size: 25px;
             position: fixed;
             right: 0;
-            background: rgb(100, 94, 94);
+            background: rgb(100, 100, 100);
             padding: 4.5px;
             text-decoration: none;
             color: #fff;
         }
 
         #frame { 
-            width: 1020px; 
-            position:absolute; 
-            left:0; 
-            top:0px; 
-            right: 0; 
+            position: fixed;
+            width: 98%; 
+            height:98%;
+            left: 0;
+            padding: 1%;
             -ms-zoom: 0.7; 
             -moz-transform: scale(0.7); 
             -moz-transform-origin: 0px 0; 
             -o-transform: scale(0.7); 
             -o-transform-origin: 0 0; 
-            -webkit-transform: scale(0.7); 
+            -webkit-transform: scale(1.0); 
             -webkit-transform-origin: 0 0;
+            
+        }
+
+        .footer {
+            width: 100%;
+            padding: 1%;
+            background: #003641;
+            color: white;
+            text-align: center;
+            font-family: 'Asap', sans-serif;
+            bottom: 0;
+            position: fixed;
         }
 
 
@@ -154,7 +151,7 @@
                     <th>01/01/0000 - Inicio: 15:00</th>
                     <th>Reunião Atualização Sistema de OS</th>
                     <th>
-                        <a href="#abrir" class="btn">Link da Sala</a>
+                        <a href="#abrir" class="btn">Gravação</a>
                           <div class="container" id="abrir">
 
                             <div class="modal-corpo">
@@ -163,35 +160,13 @@
                             </div>
                           </div>  
                         
-                    </th>
-                </tr>
-                <tr>
-                    <th scope="row">AGO - 2020</th>
-                    <th>01/01/0000 - Inicio: 08:00</th>
-                    <th>Assembleia Geral Ordinaria 2020 com todos os Delegados</th>
-                    <th>
-                        <iframe src="https://player.vimeo.com/video/516584083" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    </th>    
-                </tr>
-                  <!-- Para Adicionar mais registros basta começar a copiar daqui!-->
-                  <tr>
-                    <th scope="row">AGO - 2021</th>
-                    <th>01/01/0000 - Inicio: 12:30</th>
-                    <th>Assembleia Geral Ordinaria 2021 com todos os Delegados</th>
-                    <th><iframe src="https://player.vimeo.com/video/515823049" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    </th>
-                  </tr>
-                  <!-- Copiar ate aqui...-->
             </tbody>
         </table>
           
 
     <div>
-
+        
         <br>
-    </div>
-    <div class="footer">
-            Setor de Tecnologia - STI
     </div>
 </body>
 </html>
