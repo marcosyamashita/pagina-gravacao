@@ -16,14 +16,14 @@
         }
 
         html, body {
-
             background: #d9e0e0;
         }
 
         .header {
+            padding: 10px;
             background: #003641;
             width: 100%;
-            padding: 2%;
+            height: 100%;
             color: white;
             font-family: 'Asap', sans-serif;
             font-size: 55%;
@@ -36,7 +36,7 @@
 
         .content {
             width: 100%;
-            position: absolute;
+            position: fixed;
             background: #d9e0e0;
             font-family: 'Asap', sans-serif;
         }
@@ -44,7 +44,7 @@
         .container{
             visibility: hidden;
             opacity: 0;
-            transition: visibility: .6s, opacity: .5s;
+            transition: visibility= .6s, opacity= .5s;
         }
 
         .container:target{
