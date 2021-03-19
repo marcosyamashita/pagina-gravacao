@@ -1,29 +1,5 @@
 <?php
-
-	
-	/*$ldap_con = ldap_connect("ldap://10.6.8.5", 389)
-        or die("Não foi possivel conectar ao servidor LDAP");
-
-	if (isset($_POST["ldapLogin"])) {
-
-        $ldap_dn = "uid=".$_POST["usuario"].",dc=crediembrapa,dc=local";
-        $ldap_password = $_POST["senha"];
-
-        ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3);
-
-        //if(ldap_bind($ldap_con, $ldap_dn, $ldap_password)) {
-        $ldapbind = @ldap_bind($ldap_con, $ldap_dn, $ldap_password);
-
-        if ($ldapbind) {
-
-            echo "Autenticado!";
-            //header('location: visualizagravacao.html');
-
-        } else {
-            echo "Invalid user/pass or other errors!";
-        }
-    }*/
-
+session_start();
 
 	
 	$ldap_con = ldap_connect("ldap://10.6.8.5:389");
@@ -32,13 +8,19 @@
 
     if (isset($_POST["ldapLogin"])) {
 
-    $ldap_dn = "CN=usuario.servico,CN=Users,DC=crediembrapa,DC=local";
-	$ldap_password = "Credi%2018";
+        $ldap_dn = "CN=usuario.servico,CN=Users,DC=crediembrapa,DC=local";
+        $ldap_password = "Credi%2018";
 
-	if(ldap_bind($ldap_con,$ldap_dn,$ldap_password))
-		echo "Authenticated";
-	else
-		echo "Invalid Credential";
+        if(ldap_bind($ldap_con,$ldap_dn,$ldap_password)) {
+            //echo "Authenticated";
+            $_SESSION['usuario'] = $_POST['usuario'];
+            header('Location: visualizagravacao.php');
+            exit();
+        }else {
+            echo "Dados invalidos";
+            unset($_SESSION['nao_autenticado']);
+        }
+		
 
     }    
 	

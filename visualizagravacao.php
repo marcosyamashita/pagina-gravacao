@@ -1,12 +1,15 @@
     <?php
+        session_start();
 
-        include('autenticacao.php')
-        
-        if(!$_SESSION['usuario']) {
-            header('Location: autenticacao.php')
-        }
+        /*if(empty($_POST['usuario']) || empty($_POST['senha'])) {
+            header('Location: autenticacao.php');
+            exit();
 
-    /?>
+        }*/
+
+        //echo $_SESSION['usuario'];
+
+    ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -133,7 +136,7 @@
             position: fixed;
         }
 
-        .header h4 {
+        .header h5 {
             position: absolute;
             text-align: right;
             right: 0;
@@ -150,13 +153,13 @@
             color:rgb(214, 66, 66);
         }
 
+
     </style>
 </head>
 <body>
     <div class="header">
-        <h4>teste <a href="logout.php">Sair</a></h4>
-    <img src="logo_letra_branca.png" alt="logo_sicoob">
-        
+        <h5>Bem-vindo: <?php echo $_SESSION['usuario']?> <a href="logout.php">Sair</a></h5>
+        <img src="logo_letra_branca.png" alt="logo_sicoob">
         <!--<p id="logo">CrediEmbrapa</p> -->
     </div>
     <div class="content">
@@ -174,6 +177,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!--PARA ADICIONAR NOVO REGISTRO COMEÇAR COPIAR APARTIR DAQUI!!!-->
                 <tr>
                     <th scope="row">Reunião - STI</th>
                     <th>01/01/0000 - Inicio: 15:00</th>
@@ -187,7 +191,9 @@
                                 <p><iframe id="frame" src="https://conf.crediembrapa.com.br/playback/presentation/2.0/playback.html?meetingId=183f0bf3a0982a127bdb8161e0c44eb696b3e75c-1584985740664" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></p>
                             </div>
                           </div>  
-                        
+                </tr>    
+                <!-- COPIAR ATE AQUI-->
+
             </tbody>
         </table>
           
@@ -198,3 +204,9 @@
     </div>
 </body>
 </html>
+
+<?php
+
+//echo $_SESSION['usuario'];
+
+?>
