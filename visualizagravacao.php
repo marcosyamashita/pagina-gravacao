@@ -1,11 +1,11 @@
     <?php
         session_start();
 
-        /*if(empty($_POST['usuario']) || empty($_POST['senha'])) {
-            header('Location: autenticacao.php');
+        if(!$_SESSION['usuario']){
+            header('Location: index.php');
             exit();
 
-        }*/
+        }
 
         //echo $_SESSION['usuario'];
 
