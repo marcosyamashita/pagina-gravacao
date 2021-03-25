@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <title>Visualização de Gravações</title>
 
@@ -155,6 +156,17 @@
 
 
     </style>
+
+            <script>
+                function pauseVid(){
+                    document.getElementById('frame').src = ""
+                }
+
+                function playVid(){
+                    document.getElementById('frame').src = "https://conf.crediembrapa.com.br/playback/presentation/2.0/playback.html?meetingId=183f0bf3a0982a127bdb8161e0c44eb696b3e75c-1584985740664"
+                }
+            </script>
+
 </head>
 <body>
     <div class="header">
@@ -183,11 +195,11 @@
                     <th>01/01/0000 - Inicio: 15:00</th>
                     <th>Reunião Atualização Sistema de OS</th>
                     <th>
-                        <a href="#abrir" class="btn">Gravação</a>
+                        <a href="#abrir" class="btn" onclick="playVid()">Gravação</a>
                           <div class="container" id="abrir">
 
                             <div class="modal-corpo">
-                                <a href="#" class="fechar">X</a>
+                                <a href="#" class="fechar" id="fechar" onclick="pauseVid()">X</a>
                                 <p><iframe id="frame" src="https://conf.crediembrapa.com.br/playback/presentation/2.0/playback.html?meetingId=183f0bf3a0982a127bdb8161e0c44eb696b3e75c-1584985740664" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></p>
                             </div>
                           </div>  
