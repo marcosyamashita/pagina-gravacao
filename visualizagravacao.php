@@ -216,9 +216,3 @@
     </div>
 </body>
 </html>
-
-<?php
-
-//echo $_SESSION['usuario'];
-
-?>
