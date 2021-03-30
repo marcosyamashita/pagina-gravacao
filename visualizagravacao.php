@@ -7,8 +7,6 @@
 
         }
 
-        //echo $_SESSION['usuario'];
-
         $con = mysqli_connect('127.0.0.1', 'root', '', 'pagina-gravacao');
 
         if (!$con) {
@@ -17,7 +15,20 @@
             echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
         }
 
-        $query = "SELECT nomusuario FROM usuario WHERE nomusuario = ". $_SESSION['usuario'];
+        $query = "SELECT * FROM usuario WHERE nomusuario = '{$_SESSION['usuario']}'";
+
+
+        $result = mysqli_query($con, $query);
+        $row = mysqli_num_rows($result);
+
+        $resquery = mysqli_fetch_array($result);
+
+        //VERIFICAÇÃO DE LOGIN
+        /*if (!$row) {
+            echo "<script>alert('Usuário sem acesso ao Portal!');window.location.href='index.php';</script>";
+        } else {
+
+        }*/
 
     ?>
 
@@ -180,7 +191,7 @@
 </head>
 <body>
     <div class="header">
-        <h5>Bem-vindo: <?php echo $_SESSION['usuario']?> <a href="logout.php">Sair</a></h5>
+        <h5>Bem-vindo: &nbsp <?php echo $resquery['desusuario']?> <a href="logout.php">Sair</a></h5>
         <img src="logo_letra_branca.png" alt="logo_sicoob">
         <!--<p id="logo">CrediEmbrapa</p> -->
     </div>
