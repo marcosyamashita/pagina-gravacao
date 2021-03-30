@@ -9,6 +9,16 @@
 
         //echo $_SESSION['usuario'];
 
+        $con = mysqli_connect('127.0.0.1', 'root', '', 'pagina-gravacao');
+
+        if (!$con) {
+            echo "Não foi possivel se conectar ao BD!" . PHP_EOL;
+            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+        }
+
+        $query = "SELECT nomusuario FROM usuario WHERE nomusuario = ". $_SESSION['usuario'];
+
     ?>
 
 <!DOCTYPE html>
