@@ -1,34 +1,36 @@
-    <?php
-        session_start();
+<?php
+session_start();
 
-        if(!$_SESSION['usuario']){
-            header('Location: index.php');
-            exit();
+$_SESSION['usuario'] = 'marcos.pereira';
 
-        }
+//if(!$_SESSION['usuario']){
+    //header('Location: index.php');
+    //exit();
 
-        $con = mysqli_connect('127.0.0.1', 'root', '', 'pagina-gravacao');
+//}
 
-        if (!$con) {
-            echo "Não foi possivel se conectar ao BD!" . PHP_EOL;
-            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-        }
+$con = mysqli_connect('127.0.0.1', 'root', '', 'pagina-gravacao');
 
-    $query = "SELECT * FROM gravacao WHERE acesso_usuario like '%{$_SESSION['usuario']}%'";
+if (!$con) {
+    echo "Não foi possivel se conectar ao BD!" . PHP_EOL;
+    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+}
+
+$query = "SELECT * FROM gravacao WHERE acesso_usuario like '%{$_SESSION['usuario']}%'";
 
 
-        $result = mysqli_query($con, $query);
-        $row = mysqli_num_rows($result);
+$result = mysqli_query($con, $query);
+$row = mysqli_num_rows($result);
 
-        //VERIFICAÇÃO DE LOGIN
-        /*if (!$row) {
-            echo "<script>alert('Usuário sem acesso ao Portal!');window.location.href='index.php';</script>";
-        } else {
+//VERIFICAÇÃO DE LOGIN
+/*if (!$row) {
+    echo "<script>alert('Usuário sem acesso ao Portal!');window.location.href='index.php';</script>";
+} else {
 
-        }*/
+}*/
 
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -129,20 +131,20 @@
             color: #fff;
         }
 
-        #frame { 
+        #frame {
             position: fixed;
-            width: 98%; 
+            width: 98%;
             height:98%;
             left: 0;
             padding: 1%;
-            -ms-zoom: 0.7; 
-            -moz-transform: scale(0.7); 
-            -moz-transform-origin: 0px 0; 
-            -o-transform: scale(0.7); 
-            -o-transform-origin: 0 0; 
-            -webkit-transform: scale(1.0); 
+            -ms-zoom: 0.7;
+            -moz-transform: scale(0.7);
+            -moz-transform-origin: 0px 0;
+            -o-transform: scale(0.7);
+            -o-transform-origin: 0 0;
+            -webkit-transform: scale(1.0);
             -webkit-transform-origin: 0 0;
-            
+
         }
 
         .footer {
@@ -177,71 +179,72 @@
     </style>
 
 
+
 </head>
 <body>
-    <div class="header">
-        <h5>Bem-vindo: &nbsp <?="{$_SESSION['usuario']}";?> <a href="logout.php">Sair</a></h5>
-        <img src="logo_letra_branca.png" alt="logo_sicoob">
-        <!--<p id="logo">CrediEmbrapa</p> -->
-    </div>
-    <div class="content">
-        <br>
-        <h4 id="nome">Gravações Salas de Conferencias - BBB</h4>
-        <br>
+<div class="header">
+    <h5>Bem-vindo: &nbsp <?php echo $_SESSION['usuario']?> <a href="logout.php">Sair</a></h5>
+    <img src="logo_letra_branca.png" alt="logo_sicoob">
+    <!--<p id="logo">CrediEmbrapa</p> -->
+</div>
+<div class="content">
+    <br>
+    <h4 id="nome">Gravações Salas de Conferencias - BBB</h4>
+    <br>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope"col">Nome da Sala</th>
-                    <th scope"col">Data e hora</th>
-                    <th scope"col">Descrição/Pauta</th>
-                    <th scope"col">Link da Gravação</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-            while ($exibe = mysqli_fetch_array($result)) {?>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope"col">Nome da Sala</th>
+            <th scope"col">Data e hora</th>
+            <th scope"col">Descrição/Pauta</th>
+            <th scope"col">Link da Gravação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--PARA ADICIONAR NOVO REGISTRO COMEÇAR COPIAR APARTIR DAQUI!!!-->
 
+        <?php
+        while ($exibe = mysqli_fetch_array($result)) {?>
 
-            <tr>
-                <th scope="row"><?=$exibe['nome_sala'];?></th>
-                <th><?=$exibe['data'];?> - Inicio: <?=$exibe['hora'];?></th>
-                <th><?=$exibe['desc_sala'];?></th>
-                <th>
-                    <a href="#abrir" class="btn">Gravação</a></th>
-                        <div class="container" id="abrir">
-                            <div class="modal-corpo">
-                                <a href="#" class="fechar" id="fechar" onclick="pauseVid()">X</a>
-                                <p><iframe  id="frame"  src="<?php echo $exibe['link_gravacao']?>" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></p>;
+        <tr>
+            <th scope="row"><?=$exibe['nome_sala']?></th>
+            <th><?=$exibe['data']?> - Inicio: <?=$exibe['hora']?></th>
+            <th><?=$exibe['desc_sala']?></th>
+            <th>
+                <a href="#abrir" class="btn" onclick="playVid()">Gravação</a>
+                <div class="container" id="abrir">
 
+                    <div class="modal-corpo">
+                        <a href="#" class="fechar" id="fechar" onclick="pauseVid()">X</a>
+                        <p><iframe id="frame" src="<?=$exibe['link_gravacao']?>" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></p>
+                    </div>
+                </div>
+        </tr>
+        <!-- COPIAR ATE AQUI-->
 
             <?php
 
             } ?>
-                            </div>
-                        </div>
-            </tr>
 
-            <script>
-                function pauseVid(){
-                    document.getElementById('frame').src = "";
-                    window.location.reload();
-                    window.location.href = "visualizagravacao.php";
-                }
-            </script>;
+        </tbody>
+    </table>
 
-
-            </tbody>
-        </table>
-
-        <?php
-
-        mysqli_close($con);
-        ?>
 
     <div>
-        
+
         <br>
     </div>
 </body>
+
+<script>
+    function pauseVid(){
+        document.getElementById('frame').src = ""
+    }
+
+    function playVid(){
+        document.getElementById('frame').src = "https://conf.crediembrapa.com.br/playback/presentation/2.0/playback.html?meetingId=183f0bf3a0982a127bdb8161e0c44eb696b3e75c-1584985740664"
+    }
+</script>
+
 </html>
