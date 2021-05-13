@@ -7,7 +7,7 @@
 
         }
 
-        $con = mysqli_connect('127.0.0.1', 'root', '', 'pagina-gravacao');
+        $con = mysqli_connect('127.0.0.1', 'root', '', 'paginagravacao');
 
         if (!$con) {
             echo "Não foi possivel se conectar ao BD!" . PHP_EOL;
